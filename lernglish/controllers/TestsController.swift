@@ -1,5 +1,5 @@
 //
-//  RootTabController.swift
+//  TestsController.swift
 //  lernglish
 //
 //  Created by Maxim Belsky on 15/03/2017.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class RootTabController: UITabBarController {
-
+class TestsController: UIViewController {
+        
     override func viewDidLoad() {
         super.viewDidLoad()
     }

@@ -17,7 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = RootTabController()
+        
+        let lessons = LessonsController()
+        lessons.tabBarItem = UITabBarItem(title: "Lessons", image: nil, selectedImage: nil)
+        let tests = TestsController()
+        tests.tabBarItem = UITabBarItem(title: "Tests", image: nil, selectedImage: nil)
+        let results = ResultsController()
+        results.tabBarItem = UITabBarItem(title: "Results", image: nil, selectedImage: nil)
+        
+        let controller = RootTabController()
+        controller.setViewControllers([lessons, tests, results], animated: true)
+        window?.rootViewController = controller
         return true
     }
 }
