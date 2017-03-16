@@ -8,6 +8,18 @@
 
 import UIKit
 
+extension UIColor {
+    convenience init?(html: Int, alpha: CGFloat = 1) {
+        if html < 0 || html > 0xFFFFFF {
+            return nil
+        }
+        let r = (html & 0xFF0000) >> 16
+        let g = (html & 0x00FF00) >> 8
+        let b = (html & 0x0000FF)
+        self.init(red: CGFloat(r)/255, green: CGFloat(g)/255, blue: CGFloat(b)/255, alpha: alpha)
+    }
+}
+
 extension UIView {
     func addConstraintsWithFormat(_ format: String,
                                   options: NSLayoutFormatOptions = NSLayoutFormatOptions(),
