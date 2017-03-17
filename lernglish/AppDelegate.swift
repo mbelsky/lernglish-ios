@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = controller
         
         UITabBar.appearance().tintColor = K.Color.primaryDark
+        UITabBar.appearance().barTintColor = K.Color.lightGray
         
         window?.makeKeyAndVisible()
         return true

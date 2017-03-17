@@ -13,6 +13,8 @@ struct K {
     struct Color {
         static let primary = UIColor(html: 0x22B13B)!
         static let primaryDark = UIColor(html: 0x1E9F35)!
+        
+        static let lightGray = UIColor(html: 0xEEEEEE)!
     }
     
     struct Font {
