@@ -26,7 +26,7 @@ class LessonHeaderCell: UICollectionReusableView {
     }
     
     private func setupView() {
-        backgroundColor = K.primaryColor
+        backgroundColor = K.Color.primary
         
         addSubview(label)
         addConstraintsWithFormat("H:|-16-[v0]-16-|", views: label)

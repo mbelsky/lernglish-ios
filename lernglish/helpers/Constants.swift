@@ -9,7 +9,11 @@
 import UIKit
 
 struct K {
-    static let primaryColor = UIColor(html: 0x22B13B)!
+   
+    struct Color {
+        static let primary = UIColor(html: 0x22B13B)!
+        static let primaryDark = UIColor(html: 0x1E9F35)!
+    }
     
     struct Font {
         static let tableHeader = UIFont.systemFont(ofSize: 12.5, weight: 0.25)
