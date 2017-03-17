@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let lessons = LessonsController()
+        let lessons = LessonsListController()
         lessons.tabBarItem = UITabBarItem(title: "Lessons", image: nil, selectedImage: nil)
         let tests = TestsController()
         tests.tabBarItem = UITabBarItem(title: "Tests", image: nil, selectedImage: nil)
@@ -28,8 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         controller.setViewControllers([lessons, tests, results], animated: true)
         window?.rootViewController = controller
         
-        UITabBar.appearance().tintColor = K.Color.primaryDark
         UITabBar.appearance().barTintColor = K.Color.lightGray
+        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().tintColor = K.Color.primaryDark
+        
+        UINavigationBar.appearance().barTintColor = K.Color.lightGray
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().tintColor = K.Color.primaryDark
         
         window?.makeKeyAndVisible()
         return true

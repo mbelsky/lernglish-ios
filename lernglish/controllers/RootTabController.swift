@@ -12,7 +12,6 @@ class RootTabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.isTranslucent = false
         view.backgroundColor = K.Color.primaryDark
         
         let sView = view.subviews[0]

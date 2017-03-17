@@ -13,8 +13,9 @@
 		8A3583AB1E7983560084B569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3583AA1E7983560084B569 /* AppDelegate.swift */; };
 		8A3583B21E7983560084B569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3583B11E7983560084B569 /* Assets.xcassets */; };
 		8A3583B51E7983560084B569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3583B31E7983560084B569 /* LaunchScreen.storyboard */; };
+		8A4009ED1E7C0CC80072BA90 /* LessonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4009EC1E7C0CC80072BA90 /* LessonController.swift */; };
 		8AE24FDB1E79D2AB00FEBB55 /* RootTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDA1E79D2AB00FEBB55 /* RootTabController.swift */; };
-		8AE24FDD1E79D61600FEBB55 /* LessonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDC1E79D61600FEBB55 /* LessonsController.swift */; };
+		8AE24FDD1E79D61600FEBB55 /* LessonsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */; };
 		8AE24FDF1E79D63000FEBB55 /* TestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDE1E79D63000FEBB55 /* TestsController.swift */; };
 		8AE24FE11E79D64800FEBB55 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FE01E79D64800FEBB55 /* ResultsController.swift */; };
 		8AE24FE31E79E4AC00FEBB55 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FE21E79E4AC00FEBB55 /* LessonCell.swift */; };
@@ -29,8 +30,9 @@
 		8A3583B11E7983560084B569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3583B41E7983560084B569 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A3583B61E7983560084B569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A4009EC1E7C0CC80072BA90 /* LessonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonController.swift; path = controllers/LessonController.swift; sourceTree = "<group>"; };
 		8AE24FDA1E79D2AB00FEBB55 /* RootTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabController.swift; path = controllers/RootTabController.swift; sourceTree = "<group>"; };
-		8AE24FDC1E79D61600FEBB55 /* LessonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonsController.swift; path = controllers/LessonsController.swift; sourceTree = "<group>"; };
+		8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonsListController.swift; path = controllers/LessonsListController.swift; sourceTree = "<group>"; };
 		8AE24FDE1E79D63000FEBB55 /* TestsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestsController.swift; path = controllers/TestsController.swift; sourceTree = "<group>"; };
 		8AE24FE01E79D64800FEBB55 /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsController.swift; path = controllers/ResultsController.swift; sourceTree = "<group>"; };
 		8AE24FE21E79E4AC00FEBB55 /* LessonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonCell.swift; path = views/LessonCell.swift; sourceTree = "<group>"; };
@@ -82,7 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				8AE24FDA1E79D2AB00FEBB55 /* RootTabController.swift */,
-				8AE24FDC1E79D61600FEBB55 /* LessonsController.swift */,
+				8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */,
+				8A4009EC1E7C0CC80072BA90 /* LessonController.swift */,
 				8AE24FDE1E79D63000FEBB55 /* TestsController.swift */,
 				8AE24FE01E79D64800FEBB55 /* ResultsController.swift */,
 			);
@@ -185,11 +188,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AE24FDD1E79D61600FEBB55 /* LessonsController.swift in Sources */,
+				8AE24FDD1E79D61600FEBB55 /* LessonsListController.swift in Sources */,
 				8AE24FE31E79E4AC00FEBB55 /* LessonCell.swift in Sources */,
 				8AE24FE11E79D64800FEBB55 /* ResultsController.swift in Sources */,
 				8A3583AB1E7983560084B569 /* AppDelegate.swift in Sources */,
 				8AE24FDB1E79D2AB00FEBB55 /* RootTabController.swift in Sources */,
+				8A4009ED1E7C0CC80072BA90 /* LessonController.swift in Sources */,
 				8AE24FDF1E79D63000FEBB55 /* TestsController.swift in Sources */,
 				8A0308371E7B538100E50595 /* LessonHeaderCell.swift in Sources */,
 				8A0308351E7B1EC300E50595 /* Extensions.swift in Sources */,

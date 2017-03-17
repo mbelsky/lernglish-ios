@@ -1,5 +1,5 @@
 //
-//  LessonsController.swift
+//  LessonsListController.swift
 //  lernglish
 //
 //  Created by Maxim Belsky on 15/03/2017.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class LessonsController: UICollectionViewController {
+class LessonsListController: UICollectionViewController {
     fileprivate let cellId = "LessonsCellId"
     fileprivate let headerId = "HeaderCellId"
     fileprivate var
     orderedCategories = ["Present Simple", "Past Simple"],
     themes = [
         "Present Simple": ["Use", "Questions and negatives"],
-        "Past Simple": ["Use", "Questions and negatives", "Irregular Verb Forms", "Use", "Questions and negatives", "Irregular Verb Forms", "Use", "Questions and negatives", "Irregular Verb Forms", "Use", "Questions and negatives", "Irregular Verb Forms"]
+        "Past Simple": ["Use", "Questions and negatives", "Irregular Verb Forms"]
     ]
     
     init() {
@@ -37,7 +37,7 @@ class LessonsController: UICollectionViewController {
 }
 
 // Implement protocols
-extension LessonsController: UICollectionViewDelegateFlowLayout {
+extension LessonsListController: UICollectionViewDelegateFlowLayout {
     private func getThemes(_ section: Int) -> [String] {
         return themes[orderedCategories[section]] ?? [String]()
     }
@@ -62,6 +62,13 @@ extension LessonsController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = UINavigationController(rootViewController: LessonController())
+        controller.modalPresentationStyle = .fullScreen
+        controller.modalTransitionStyle = .coverVertical
+        present(controller, animated: true, completion: nil)
     }
     
     // Headers
