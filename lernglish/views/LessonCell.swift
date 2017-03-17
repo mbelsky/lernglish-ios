@@ -11,6 +11,7 @@ import UIKit
 class LessonCell: UICollectionViewCell {
     let label: UILabel = {
         let label = UILabel()
+        label.font = K.Font.tableRow
         label.textColor = UIColor.black
         return label
     }()
