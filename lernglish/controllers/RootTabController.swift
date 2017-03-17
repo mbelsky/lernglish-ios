@@ -12,5 +12,6 @@ class RootTabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = K.Color.primaryDark
     }
 }

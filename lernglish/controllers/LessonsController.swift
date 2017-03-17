@@ -13,7 +13,10 @@ class LessonsController: UICollectionViewController {
     fileprivate let headerId = "HeaderCellId"
     fileprivate var
     orderedCategories = ["Present Simple", "Past Simple"],
-    themes = ["Present Simple": ["Use", "Questions and negatives"], "Past Simple": ["Use", "Questions and negatives", "Irregular Verb Forms"]]
+    themes = [
+        "Present Simple": ["Use", "Questions and negatives"],
+        "Past Simple": ["Use", "Questions and negatives", "Irregular Verb Forms"]
+    ]
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -30,6 +33,16 @@ class LessonsController: UICollectionViewController {
         collectionView?.register(LessonCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(LessonHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                  withReuseIdentifier: headerId)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if 0 == collectionView?.constraints.count {
+            view.addConstraintsWithFormat("H:|[v0]|", views: collectionView!)
+            
+            let format = "V:|-\(topLayoutGuide.length)-[v0]-\(bottomLayoutGuide.length)-|"
+            view.addConstraintsWithFormat(format, views: collectionView!)
+        }
     }
 }
 
