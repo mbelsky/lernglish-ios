@@ -10,6 +10,7 @@ import UIKit
 
 class LessonsController: UICollectionViewController {
     fileprivate let cellId = "LessonsCellId"
+    fileprivate let headerId = "HeaderCellId"
     fileprivate var
     orderedCategories = ["Present Simple", "Past Simple"],
     themes = ["Present Simple": ["Use", "Questions and negatives"], "Past Simple": ["Use", "Questions and negatives", "Irregular Verb Forms"]]
@@ -27,6 +28,8 @@ class LessonsController: UICollectionViewController {
         super.viewDidLoad()
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(LessonCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(LessonHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                 withReuseIdentifier: headerId)
     }
 }
 
@@ -51,10 +54,22 @@ extension LessonsController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: 48)
+        return CGSize(width: view.bounds.width, height: 42)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    // Headers
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId,
+                                                                     for: indexPath) as! LessonHeaderCell
+        header.label.text = orderedCategories[indexPath.section]
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.bounds.width, height: 48)
     }
 }
