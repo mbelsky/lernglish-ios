@@ -1,0 +1,9 @@
+# Add a dependency like github "Alamofire/Alamofire" ~> 4.3
+# Also this operators are available >= == "some-branch-or-tag-or-commit"
+
+github "SwiftyJSON/SwiftyJSON"
+
+# 1. Use carthage update or bootstrap to get frameworks
+# 2. After open Settings > Linked Frameworks and Libraries and add required frameworks
+# 3. Build Phases > Add New Run Scrip Phase > /usr/local/bin/carthage copy-frameworks
+# 4. Add required frameworks under Input Files: $(SRCROOT)/Carthage/Build/iOS/<framework_name>.framework

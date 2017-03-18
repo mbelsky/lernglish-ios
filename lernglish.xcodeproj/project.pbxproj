@@ -14,6 +14,7 @@
 		8A3583B21E7983560084B569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3583B11E7983560084B569 /* Assets.xcassets */; };
 		8A3583B51E7983560084B569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3583B31E7983560084B569 /* LaunchScreen.storyboard */; };
 		8A4009ED1E7C0CC80072BA90 /* LessonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4009EC1E7C0CC80072BA90 /* LessonController.swift */; };
+		8A8938DE1E7DA0DB000B41E7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8938DD1E7DA0DB000B41E7 /* SwiftyJSON.framework */; };
 		8AE24FDB1E79D2AB00FEBB55 /* RootTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDA1E79D2AB00FEBB55 /* RootTabController.swift */; };
 		8AE24FDD1E79D61600FEBB55 /* LessonsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */; };
 		8AE24FDF1E79D63000FEBB55 /* TestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDE1E79D63000FEBB55 /* TestsController.swift */; };
@@ -33,6 +34,7 @@
 		8A3583B41E7983560084B569 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A3583B61E7983560084B569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A4009EC1E7C0CC80072BA90 /* LessonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonController.swift; path = controllers/LessonController.swift; sourceTree = "<group>"; };
+		8A8938DD1E7DA0DB000B41E7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		8AE24FDA1E79D2AB00FEBB55 /* RootTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabController.swift; path = controllers/RootTabController.swift; sourceTree = "<group>"; };
 		8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonsListController.swift; path = controllers/LessonsListController.swift; sourceTree = "<group>"; };
 		8AE24FDE1E79D63000FEBB55 /* TestsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestsController.swift; path = controllers/TestsController.swift; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8938DE1E7DA0DB000B41E7 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +61,7 @@
 			children = (
 				8A3583A91E7983560084B569 /* lernglish */,
 				8A3583A81E7983560084B569 /* Products */,
+				8A8938DC1E7DA0DB000B41E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +87,14 @@
 				8A3583B61E7983560084B569 /* Info.plist */,
 			);
 			path = lernglish;
+			sourceTree = "<group>";
+		};
+		8A8938DC1E7DA0DB000B41E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A8938DD1E7DA0DB000B41E7 /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8AE24FD61E79D23200FEBB55 /* controllers */ = {
@@ -133,6 +145,7 @@
 				8A3583A31E7983560084B569 /* Sources */,
 				8A3583A41E7983560084B569 /* Frameworks */,
 				8A3583A51E7983560084B569 /* Resources */,
+				8A8938DF1E7DA0FF000B41E7 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -188,6 +201,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A8938DF1E7DA0FF000B41E7 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8A3583A31E7983560084B569 /* Sources */ = {
@@ -319,6 +350,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = lernglish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mbelsky.lernglish;
@@ -332,6 +367,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = lernglish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mbelsky.lernglish;
