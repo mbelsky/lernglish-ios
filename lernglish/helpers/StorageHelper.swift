@@ -7,16 +7,12 @@
 //
 
 import CoreData
-
-enum StorageEntity: String {
-    case section = "Section", theme = "Theme"
-}
+import SwiftyJSON
 
 class StorageHelper {
     static let instance = StorageHelper()
     
-    private let
-    coordinator: NSPersistentStoreCoordinator,
+    fileprivate let
     moc: NSManagedObjectContext,
     privateMoc: NSManagedObjectContext
     
@@ -33,56 +29,161 @@ class StorageHelper {
         return NSFetchedResultsController<NSFetchRequestResult>(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "section.name", cacheName: nil)
     }
 
-    func putSection(_ name: String, id: Int32, themes: [(String, String, Int32)]) throws {
-        let sectionObject = NSEntityDescription.insertNewObject(forEntityName: StorageEntity.section.rawValue,
-                                                                into: moc) as! SectionMO
-        sectionObject.id = id
-        sectionObject.name = name
-        
-        for pair in themes {
-            let themeObject = NSEntityDescription.insertNewObject(forEntityName: StorageEntity.theme.rawValue,
-                                                                  into: moc) as! ThemeMO
-            themeObject.content = pair.1
-            themeObject.id = pair.2
-            themeObject.name = pair.0
-            
-            sectionObject.addToThemes(themeObject)
-        }
-        
-        try save()
-    }
-    
-    private func save() throws {
+    func save() throws {
         if moc.hasChanges {
             try moc.save()
         }
     }
     
-    private init?() {
-        guard let modelUrl = Bundle.main.url(forResource: "DataModel", withExtension: "momd") else {
-            return nil
+    private init() {
+        moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        if let modelUrl = Bundle.main.url(forResource: "DataModel", withExtension: "momd"),
+                let model = NSManagedObjectModel(contentsOf: modelUrl) {
+            moc.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
         }
-        guard let model = NSManagedObjectModel(contentsOf: modelUrl) else {
-            return nil
+        
+        privateMoc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        privateMoc.parent = moc
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            guard let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
+                return
+            }
+            
+            let persistentStoreUrl = documents.appendingPathComponent("lernglish.sqlite")
+            do {
+                try self.moc.persistentStoreCoordinator?
+                        .addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreUrl)
+            } catch {
+            }
+        }
+    }
+}
+
+extension StorageHelper {
+    func importBaseSections() {
+        privateMoc.perform {
+            let defaults = UserDefaults()
+            let key = "baseSections.hasImported"
+            if defaults.bool(forKey: key) {
+                return
+            }
+
+            guard let url = Bundle.main.url(forResource: "base-sections", withExtension: "json") else {
+                return
+            }
+
+            //TODO: Catch instead of crashing
+            try! self.importSections(url)
+
+            defaults.set(true, forKey: key)
+            defaults.synchronize()
+        }
+    }
+
+    func importSections(from url: URL) {
+        privateMoc.perform {
+            try! self.importSections(url)
+        }
+    }
+
+    private func importSections(_ url: URL) throws {
+        guard let data = try? Data(contentsOf: url) else {
+            throw StorageError.corruptedData
+        }
+        let json = JSON(data: data)
+        for section in json.arrayValue {
+            let id = section["id"].int32Value
+            let name = section["name"].stringValue
+            var themes = [Theme]()
+
+            for theme in section["themes"].arrayValue {
+                let id = theme["id"].int32Value
+                let name = theme["name"].stringValue
+                let content = theme["content"].stringValue
+
+                if let theme = Theme(id: id, content: content, name: name) {
+                    themes.append(theme)
+                } else {
+                    // Log wrong formatted theme
+                }
+            }
+
+            do {
+                try putSection(in: privateMoc, name: name, id: id, themes: themes)
+            } catch {
+
+            }
         }
 
-        coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        guard let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
-            return nil
+        guard privateMoc.hasChanges else {
+            return
         }
-        
-        // move in background thread
-        let persistentStoreUrl = documents.appendingPathComponent("lernglish.sqlite")
+
+        // Save changes
         do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil,
-                                               at: persistentStoreUrl)
+            try privateMoc.save()
         } catch {
+            throw StorageError.preservingFailed
+        }
+
+        moc.performAndWait {
+            try! self.save()
+        }
+    }
+
+    private func putSection(in moc: NSManagedObjectContext, name: String, id: Int32, themes: [Theme]) throws {
+        let sectionObject = NSEntityDescription.insertNewObject(forEntityName: StorageEntity.section.rawValue,
+                                                                into: moc) as! SectionMO
+        sectionObject.id = id
+        sectionObject.name = name
+
+        for theme in themes {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: StorageEntity.theme.rawValue)
+            request.predicate = NSPredicate(format: "id == \(theme.id)")
+
+            var themeObject: ThemeMO
+            if let _ = try! moc.fetch(request).last {
+                //TODO: Improve parser to rewrite themes data
+                fatalError("Theme's id\(theme) isn't unique")
+            } else {
+                themeObject = NSEntityDescription.insertNewObject(forEntityName: StorageEntity.theme.rawValue,
+                                                                  into: moc) as! ThemeMO
+            }
+            themeObject.content = theme.content
+            themeObject.id = theme.id
+            themeObject.name = theme.name
+
+            sectionObject.addToThemes(themeObject)
+        }
+    }
+}
+
+enum StorageError: Error {
+    case corruptedData, preservingFailed
+}
+
+private enum StorageEntity: String {
+    case section = "Section", theme = "Theme"
+}
+
+private struct Theme: CustomDebugStringConvertible {
+    let
+    id: Int32,
+    content: String,
+    name: String
+
+    init?(id: Int32, content: String, name: String) {
+        self.id = id
+        self.content = content.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if self.content.isEmpty || self.name.isEmpty {
             return nil
         }
-        
-        moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        moc.persistentStoreCoordinator = coordinator
-        privateMoc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        privateMoc.persistentStoreCoordinator = coordinator
+    }
+
+    var debugDescription: String {
+        return "<Theme: id=\(id) name=\(name)>"
     }
 }
