@@ -15,6 +15,7 @@
 		8A3583B51E7983560084B569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3583B31E7983560084B569 /* LaunchScreen.storyboard */; };
 		8A4009ED1E7C0CC80072BA90 /* LessonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4009EC1E7C0CC80072BA90 /* LessonController.swift */; };
 		8A8938DE1E7DA0DB000B41E7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8938DD1E7DA0DB000B41E7 /* SwiftyJSON.framework */; };
+		8A8938E21E7DC095000B41E7 /* base-sections.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A8938E11E7DC095000B41E7 /* base-sections.json */; };
 		8AE24FDB1E79D2AB00FEBB55 /* RootTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDA1E79D2AB00FEBB55 /* RootTabController.swift */; };
 		8AE24FDD1E79D61600FEBB55 /* LessonsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */; };
 		8AE24FDF1E79D63000FEBB55 /* TestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDE1E79D63000FEBB55 /* TestsController.swift */; };
@@ -35,6 +36,7 @@
 		8A3583B61E7983560084B569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A4009EC1E7C0CC80072BA90 /* LessonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonController.swift; path = controllers/LessonController.swift; sourceTree = "<group>"; };
 		8A8938DD1E7DA0DB000B41E7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		8A8938E11E7DC095000B41E7 /* base-sections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "base-sections.json"; sourceTree = "<group>"; };
 		8AE24FDA1E79D2AB00FEBB55 /* RootTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabController.swift; path = controllers/RootTabController.swift; sourceTree = "<group>"; };
 		8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonsListController.swift; path = controllers/LessonsListController.swift; sourceTree = "<group>"; };
 		8AE24FDE1E79D63000FEBB55 /* TestsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestsController.swift; path = controllers/TestsController.swift; sourceTree = "<group>"; };
@@ -76,15 +78,13 @@
 		8A3583A91E7983560084B569 /* lernglish */ = {
 			isa = PBXGroup;
 			children = (
+				8A3583AA1E7983560084B569 /* AppDelegate.swift */,
 				8AE24FD61E79D23200FEBB55 /* controllers */,
 				8AE24FD91E79D25A00FEBB55 /* helpers */,
 				8AE24FD81E79D25500FEBB55 /* models */,
 				8AE24FD71E79D23C00FEBB55 /* views */,
-				8A3583AA1E7983560084B569 /* AppDelegate.swift */,
-				8A3583B11E7983560084B569 /* Assets.xcassets */,
-				8AF5F51A1E7C27F5002C58D9 /* DataModel.xcdatamodeld */,
+				8A8938E01E7DC05C000B41E7 /* SupportFIles */,
 				8A3583B31E7983560084B569 /* LaunchScreen.storyboard */,
-				8A3583B61E7983560084B569 /* Info.plist */,
 			);
 			path = lernglish;
 			sourceTree = "<group>";
@@ -95,6 +95,17 @@
 				8A8938DD1E7DA0DB000B41E7 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8A8938E01E7DC05C000B41E7 /* SupportFIles */ = {
+			isa = PBXGroup;
+			children = (
+				8A3583B11E7983560084B569 /* Assets.xcassets */,
+				8AF5F51A1E7C27F5002C58D9 /* DataModel.xcdatamodeld */,
+				8A3583B61E7983560084B569 /* Info.plist */,
+				8A8938E11E7DC095000B41E7 /* base-sections.json */,
+			);
+			name = SupportFIles;
 			sourceTree = "<group>";
 		};
 		8AE24FD61E79D23200FEBB55 /* controllers */ = {
@@ -196,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A3583B51E7983560084B569 /* LaunchScreen.storyboard in Resources */,
+				8A8938E21E7DC095000B41E7 /* base-sections.json in Resources */,
 				8A3583B21E7983560084B569 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
