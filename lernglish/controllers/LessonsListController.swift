@@ -6,17 +6,16 @@
 //  Copyright © 2017 Maxim Belsky. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class LessonsListController: UICollectionViewController {
     fileprivate let cellId = "LessonsCellId"
     fileprivate let headerId = "HeaderCellId"
-    fileprivate var
-    orderedCategories = ["Present Simple", "Past Simple"],
-    themes = [
-        "Present Simple": ["Use", "Questions and negatives"],
-        "Past Simple": ["Use", "Questions and negatives", "Irregular Verb Forms"]
-    ]
+    
+    fileprivate var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
+        return StorageHelper.instance!.getLessonsFetchedResultsController()
+    }()
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -33,26 +32,27 @@ class LessonsListController: UICollectionViewController {
         collectionView?.register(LessonCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(LessonHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                  withReuseIdentifier: headerId)
+        
+        fetchedResultsController.delegate = self
+        try! fetchedResultsController.performFetch()
     }
 }
 
 // Implement protocols
 extension LessonsListController: UICollectionViewDelegateFlowLayout {
-    private func getThemes(_ section: Int) -> [String] {
-        return themes[orderedCategories[section]] ?? [String]()
-    }
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return orderedCategories.count
+        return fetchedResultsController.sections?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return getThemes(section).count;
+        let section = fetchedResultsController.sections![section]
+        return section.numberOfObjects
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let theme = fetchedResultsController.object(at: indexPath) as! ThemeMO
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LessonCell
-        cell.label.text = getThemes(indexPath.section)[indexPath.row]
+        cell.label.text = theme.name!
         return cell
     }
     
@@ -75,11 +75,15 @@ extension LessonsListController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId,
                                                                      for: indexPath) as! LessonHeaderCell
-        header.label.text = orderedCategories[indexPath.section]
+        let section = fetchedResultsController.sections![indexPath.section]
+        header.label.text = section.name
         return header
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.bounds.width, height: 48)
     }
+}
+
+extension LessonsListController: NSFetchedResultsControllerDelegate {
 }

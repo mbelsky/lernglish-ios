@@ -19,6 +19,8 @@
 		8AE24FDF1E79D63000FEBB55 /* TestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDE1E79D63000FEBB55 /* TestsController.swift */; };
 		8AE24FE11E79D64800FEBB55 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FE01E79D64800FEBB55 /* ResultsController.swift */; };
 		8AE24FE31E79E4AC00FEBB55 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FE21E79E4AC00FEBB55 /* LessonCell.swift */; };
+		8AF5F51C1E7C27F5002C58D9 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8AF5F51A1E7C27F5002C58D9 /* DataModel.xcdatamodeld */; };
+		8AF5F53F1E7C6337002C58D9 /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF5F53E1E7C6337002C58D9 /* StorageHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		8AE24FDE1E79D63000FEBB55 /* TestsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestsController.swift; path = controllers/TestsController.swift; sourceTree = "<group>"; };
 		8AE24FE01E79D64800FEBB55 /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsController.swift; path = controllers/ResultsController.swift; sourceTree = "<group>"; };
 		8AE24FE21E79E4AC00FEBB55 /* LessonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonCell.swift; path = views/LessonCell.swift; sourceTree = "<group>"; };
+		8AF5F51B1E7C27F5002C58D9 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		8AF5F53E1E7C6337002C58D9 /* StorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageHelper.swift; path = helpers/StorageHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 				8AE24FD71E79D23C00FEBB55 /* views */,
 				8A3583AA1E7983560084B569 /* AppDelegate.swift */,
 				8A3583B11E7983560084B569 /* Assets.xcassets */,
+				8AF5F51A1E7C27F5002C58D9 /* DataModel.xcdatamodeld */,
 				8A3583B31E7983560084B569 /* LaunchScreen.storyboard */,
 				8A3583B61E7983560084B569 /* Info.plist */,
 			);
@@ -113,6 +118,7 @@
 			children = (
 				8A0308341E7B1EC300E50595 /* Extensions.swift */,
 				8A0308381E7B58DB00E50595 /* Constants.swift */,
+				8AF5F53E1E7C6337002C58D9 /* StorageHelper.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -191,6 +197,7 @@
 				8AE24FDD1E79D61600FEBB55 /* LessonsListController.swift in Sources */,
 				8AE24FE31E79E4AC00FEBB55 /* LessonCell.swift in Sources */,
 				8AE24FE11E79D64800FEBB55 /* ResultsController.swift in Sources */,
+				8AF5F51C1E7C27F5002C58D9 /* DataModel.xcdatamodeld in Sources */,
 				8A3583AB1E7983560084B569 /* AppDelegate.swift in Sources */,
 				8AE24FDB1E79D2AB00FEBB55 /* RootTabController.swift in Sources */,
 				8A4009ED1E7C0CC80072BA90 /* LessonController.swift in Sources */,
@@ -198,6 +205,7 @@
 				8A0308371E7B538100E50595 /* LessonHeaderCell.swift in Sources */,
 				8A0308351E7B1EC300E50595 /* Extensions.swift in Sources */,
 				8A0308391E7B58DB00E50595 /* Constants.swift in Sources */,
+				8AF5F53F1E7C6337002C58D9 /* StorageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +362,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8AF5F51A1E7C27F5002C58D9 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8AF5F51B1E7C27F5002C58D9 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 8AF5F51B1E7C27F5002C58D9 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8A35839F1E7983560084B569 /* Project object */;
 }
