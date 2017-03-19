@@ -26,7 +26,7 @@ class StorageHelper {
         let sortSections = NSSortDescriptor(key: "section.id", ascending: true)
         let sortThemes = NSSortDescriptor(key: "id", ascending: true)
         request.sortDescriptors = [sortSections, sortThemes]
-        return NSFetchedResultsController<NSFetchRequestResult>(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "section.name", cacheName: nil)
+        return NSFetchedResultsController<NSFetchRequestResult>(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "section.transientName", cacheName: nil)
     }
 
     func save() throws {
@@ -57,6 +57,10 @@ class StorageHelper {
             } catch {
             }
         }
+    }
+
+    deinit {
+        print("It's time to DIE")
     }
 }
 
@@ -112,7 +116,7 @@ extension StorageHelper {
             do {
                 try putSection(in: privateMoc, name: name, id: id, themes: themes)
             } catch {
-
+                // Handle error
             }
         }
 
