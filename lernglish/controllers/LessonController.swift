@@ -8,10 +8,8 @@
 
 import CoreData
 import UIKit
-import WebKit
 
 class LessonController: UIViewController {
-    var sectionName: String?
     weak var theme: ThemeMO?
 
     fileprivate var textView: UITextView!
@@ -28,28 +26,42 @@ class LessonController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self,
                                                            action: #selector(closeController))
 
-        navigationItem.prompt = sectionName
+        navigationItem.prompt = theme?.section?.name
         navigationItem.title = theme?.name
 
-        guard let html = wrapContent(theme?.content) else {
-            closeController()
-            return
-        }
-
-        DispatchQueue.global(qos: .userInteractive).async {
-            if let data = html.data(using: .unicode, allowLossyConversion: true),
-                    let text = try? NSAttributedString(data: data,
-                                                       options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-                                                       documentAttributes: nil) {
-                DispatchQueue.main.async {
-                    self.textView.attributedText = text
-                }
-            }
-        }
+        displayContent()
     }
     
     func closeController() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            if let theme = self.theme {
+                let value = UIDevice.current.isSimulator ? !theme.isStudied : true
+                theme.isStudied = value
+            }
+        }
+    }
+
+    private func displayContent() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let text: NSAttributedString?
+
+            let html = self.wrapContent(self.theme?.content)
+            if let data = html?.data(using: .unicode, allowLossyConversion: true) {
+                text = try? NSAttributedString(data: data,
+                                               options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                               documentAttributes: nil)
+            } else {
+                text = nil
+            }
+
+            DispatchQueue.main.async {
+                if let text = text {
+                    self.textView.attributedText = text
+                } else {
+                    self.showErrorAlert()
+                }
+            }
+        }
     }
 
     private func wrapContent(_ content: String?) -> String? {
@@ -58,5 +70,16 @@ class LessonController: UIViewController {
         } else {
             return nil
         }
+    }
+
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: nil, message: "Unable to display this lesson's content",
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "Close", style: .default) { _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(action)
+
+        present(alert, animated: true, completion: nil)
     }
 }
