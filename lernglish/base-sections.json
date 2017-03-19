@@ -6,12 +6,12 @@
         {
           "id": 0,
           "name": "Use",
-          "content": "<html><body><h1>PS: Use</h1></body></html>"
+          "content": "<h1>PS: Use</h1>"
         },
         {
           "id": 1,
           "name": "Questions and negatives",
-          "content": "<html><body><h1>PS: Questions and negatives</h1></body></html>"
+          "content": "<h1>PS: Questions and negatives</h1>"
         }
     ]
   },
@@ -22,17 +22,17 @@
         {
           "id": 2,
           "name": "Use",
-          "content": "<html><body><h1>Past: Use</h1></body></html>"
+          "content": "<h1>Past: Use</h1>"
         },
         {
           "id": 3,
           "name": "Questions and negatives",
-          "content": "<html><body><h1>Past: Questions and negatives</h1></body></html>"
+          "content": "<h1>Past: Questions and negatives</h1>"
         },
         {
           "id": 4,
           "name": "Irregular Verb Forms",
-          "content": "<html><body><h1>Past: Irregular Verb Forms</h1></body></html>"
+          "content": "<h1>Past: Irregular Verb Forms</h1>"
         }
     ]
   },
@@ -43,12 +43,12 @@
         {
           "id": 5,
           "name": "Use",
-          "content": "<html><body><h1>Future: Use</h1></body></html>"
+          "content": "<h1>Future: Use</h1>"
         },
         {
           "id": 6,
           "name": "Questions and negatives",
-          "content": "<html><body><h1>Future: Questions and negatives</h1></body></html>"
+          "content": "<h1>Future: Questions and negatives</h1>"
         }
     ]
   }
