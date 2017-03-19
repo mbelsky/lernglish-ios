@@ -20,6 +20,16 @@ extension UIColor {
     }
 }
 
+extension UIDevice {
+    var isSimulator: Bool {
+        #if IOS_SIMULATOR
+        return true
+        #else
+        return false
+        #endif
+    }
+}
+
 extension UIView {
     func addConstraintsWithFormat(_ format: String,
                                   options: NSLayoutFormatOptions = NSLayoutFormatOptions(),
