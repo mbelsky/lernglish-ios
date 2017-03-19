@@ -14,7 +14,7 @@ class LessonsListController: UICollectionViewController {
     fileprivate let headerId = "HeaderCellId"
     
     fileprivate var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
-        return StorageHelper.instance!.getLessonsFetchedResultsController()
+        return StorageHelper.instance.getLessonsFetchedResultsController()
     }()
     
     init() {
@@ -32,7 +32,7 @@ class LessonsListController: UICollectionViewController {
         collectionView?.register(LessonCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(LessonHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                  withReuseIdentifier: headerId)
-        
+
         fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
     }
@@ -65,7 +65,15 @@ extension LessonsListController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = UINavigationController(rootViewController: LessonController())
+        guard let section = fetchedResultsController.sections?[indexPath.section],
+                let theme = fetchedResultsController.object(at: indexPath) as? ThemeMO else {
+            return
+        }
+        let lessonController = LessonController()
+        lessonController.sectionName = section.name
+        lessonController.theme = theme
+
+        let controller = UINavigationController(rootViewController: lessonController)
         controller.modalPresentationStyle = .fullScreen
         controller.modalTransitionStyle = .coverVertical
         present(controller, animated: true, completion: nil)
@@ -86,4 +94,7 @@ extension LessonsListController: UICollectionViewDelegateFlowLayout {
 }
 
 extension LessonsListController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        collectionView?.reloadData()
+    }
 }

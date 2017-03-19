@@ -6,9 +6,12 @@
 //  Copyright © 2017 Maxim Belsky. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class LessonController: UIViewController {
+    var sectionName: String?
+    weak var theme: ThemeMO?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +19,9 @@ class LessonController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self,
                                                            action: #selector(closeController))
-        navigationItem.title = "Lesson Name"
+
+        navigationItem.prompt = sectionName
+        navigationItem.title = theme?.name
     }
     
     func closeController() {
