@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().tintColor = K.Color.primaryDark
 
+        StorageHelper.instance.importBaseSections()
+
         window?.makeKeyAndVisible()
         return true
     }
