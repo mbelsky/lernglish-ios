@@ -36,6 +36,11 @@ class LessonsListController: UICollectionViewController {
         fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
     }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        try? StorageHelper.instance.save()
+    }
 }
 
 // Implement protocols
@@ -53,6 +58,7 @@ extension LessonsListController: UICollectionViewDelegateFlowLayout {
         let theme = fetchedResultsController.object(at: indexPath) as! ThemeMO
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! LessonCell
         cell.label.text = theme.name!
+        cell.lessonIsStudied = theme.isStudied
         return cell
     }
     
@@ -65,12 +71,10 @@ extension LessonsListController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let section = fetchedResultsController.sections?[indexPath.section],
-                let theme = fetchedResultsController.object(at: indexPath) as? ThemeMO else {
+        guard let theme = fetchedResultsController.object(at: indexPath) as? ThemeMO else {
             return
         }
         let lessonController = LessonController()
-        lessonController.sectionName = section.name
         lessonController.theme = theme
 
         let controller = UINavigationController(rootViewController: lessonController)

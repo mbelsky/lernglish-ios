@@ -41,4 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         return true
     }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        try? StorageHelper.instance.save()
+    }
 }

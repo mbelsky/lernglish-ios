@@ -12,9 +12,13 @@ class LessonCell: UICollectionViewCell {
     let label: UILabel = {
         let label = UILabel()
         label.font = K.Font.tableRow
-        label.textColor = UIColor.black
         return label
     }()
+    var lessonIsStudied = false {
+        didSet {
+            label.textColor = lessonIsStudied ? K.Color.primaryDark : UIColor.black
+        }
+    }
     fileprivate let viewSeparator: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
