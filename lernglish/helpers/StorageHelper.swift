@@ -29,6 +29,23 @@ class StorageHelper {
         return NSFetchedResultsController<NSFetchRequestResult>(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "section.transientName", cacheName: nil)
     }
 
+    func getTests(_ testsHandler: @escaping ([TestMO]?) -> Void) {
+        privateMoc.perform {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: StorageEntity.test.rawValue)
+            request.predicate = NSPredicate(format: "theme.isStudied == true")
+
+            var tests: [TestMO]? = nil
+            do {
+                tests = try self.privateMoc.fetch(request) as? [TestMO]
+            } catch {
+            }
+            DispatchQueue.main.async {
+                testsHandler(tests!)
+            }
+        }
+
+    }
+
     func save() throws {
         if moc.hasChanges {
             try moc.save()
@@ -64,6 +81,7 @@ class StorageHelper {
     }
 }
 
+// MARK: - Import Sections
 extension StorageHelper {
     func importBaseSections() {
         privateMoc.perform {
@@ -163,12 +181,72 @@ extension StorageHelper {
     }
 }
 
+// MARK: - Import Tests
+extension StorageHelper {
+    func importBaseTests() {
+        privateMoc.perform {
+            let defaults = UserDefaults()
+            let key = "baseTests.hasImported"
+            if defaults.bool(forKey: key) {
+                return
+            }
+
+            guard let url = Bundle.main.url(forResource: "base-tests", withExtension: "json") else {
+                return
+            }
+
+            try! self.importTests(url)
+
+            defaults.set(true, forKey: key)
+            defaults.synchronize()
+        }
+    }
+
+    private func importTests(_ url: URL) throws {
+        guard let data = try? Data(contentsOf: url) else {
+            throw StorageError.corruptedData
+        }
+        let json = JSON(data: data)
+        for testJson in json.arrayValue {
+            let id = testJson["theme_id"].int32Value
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: StorageEntity.theme.rawValue)
+            request.predicate = NSPredicate(format: "id == \(id)")
+            guard let any = try? privateMoc.fetch(request).last, let themeObject = any as? ThemeMO else {
+                continue
+            }
+
+            for contentJson in testJson["content"].arrayValue {
+                let testObject = NSEntityDescription.insertNewObject(forEntityName: StorageEntity.test.rawValue,
+                                                                     into: privateMoc) as! TestMO
+                testObject.content = contentJson.stringValue
+                testObject.theme = themeObject
+
+                themeObject.addToTests(testObject)
+            }
+        }
+
+        guard privateMoc.hasChanges else {
+            return
+        }
+
+        do {
+            try privateMoc.save()
+        } catch {
+            throw StorageError.preservingFailed
+        }
+
+        moc.performAndWait {
+            try! self.save()
+        }
+    }
+}
+
 enum StorageError: Error {
     case corruptedData, preservingFailed
 }
 
 private enum StorageEntity: String {
-    case section = "Section", theme = "Theme"
+    case section = "Section", theme = "Theme", test = "Test"
 }
 
 private struct Theme: CustomDebugStringConvertible {
