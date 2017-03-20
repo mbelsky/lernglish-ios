@@ -37,6 +37,7 @@ class LessonController: UIViewController {
             if let theme = self.theme {
                 let value = UIDevice.current.isSimulator ? !theme.isStudied : true
                 theme.isStudied = value
+                try? StorageHelper.instance.save()
             }
         }
     }

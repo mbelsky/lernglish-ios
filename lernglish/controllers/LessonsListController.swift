@@ -36,11 +36,6 @@ class LessonsListController: UICollectionViewController {
         fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
     }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        try? StorageHelper.instance.save()
-    }
 }
 
 // Implement protocols
