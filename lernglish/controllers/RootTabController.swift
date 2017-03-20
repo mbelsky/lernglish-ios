@@ -12,7 +12,7 @@ class RootTabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = K.Color.primaryDark
+        view.backgroundColor = UIColor.white
         
         let sView = view.subviews[0]
         view.addConstraintsWithFormat("H:|[v0]|", views: sView)
