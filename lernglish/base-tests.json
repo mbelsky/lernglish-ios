@@ -1,0 +1,104 @@
+[
+  {
+    "theme_id": 0, 
+    "content": 
+      [
+        "I usually <go> to school",
+        "I <bake> cookies twice a month",
+        "You always <teach> me new things",
+        "We <play> basketball once a week",
+        "They <visit> us often",
+        "Tom <work|works> every day",
+        "He always <tell|tells> us funny stories",
+        "She never <help|helps> me with that"
+      ]
+  },
+  {
+    "theme_id": 1, 
+    "content": 
+      [
+        "I <not ride|do not ride> horses",
+        "You <not sell|do not sell> cars",
+        "He <not bring|does not bring> gifts",
+        "She <not take|does not take> pictures",
+        "It <not cost|does not cost> so much",
+        "We <not seem|do not seem> so happy",
+        "They <not buy|do not buy> new products",
+        "<I wake up|do I wake up> at five in the morning?",
+        "<you go|do you go> to work by train?",
+        "<she drink|does she drink> coffee every morning?",
+        "<he smoke|does he smoke>?",
+        "<it hurt|does it hurt>?",
+        "<we dance|do we dance>?",
+        "<they travel|do they travel>?"
+      ]
+  },
+  {
+    "theme_id": 2, 
+    "content": 
+      [
+        "I <love|loved> ice cream when I was a child",
+        "You <cook|cooked> steak last night",
+        "He <travel|traveled> through the middle east last year",
+        "She <buy|bought> a new car last weekend",
+        "We <have|had> a computer when I was a child",
+        "They <work|worked> in a bank for ten years"
+      ]
+  },
+  {
+    "theme_id": 3, 
+    "content": 
+      [
+        "I <not watch|did not watch> TV yesterday",
+        "She <not think|did not think> that he was right",
+        "You <not study|did not study> French at university",
+        "We <not play|did not play> tennis yesterday",
+        "They <not meet|did not meet> yesterday",
+        "Where <you live|did you live> when you were young?",
+        "<he play|did he play> tennis yesterday?",
+        "What <we eat|did we eat> for lunch?",
+        "<they visit|did they visit> the Louvre in Paris?"
+      ]
+  },
+  {
+    "theme_id": 4, 
+    "content": 
+      [
+        "<begin|began>",
+        "<break|broke>",
+        "<bring|brought>",
+        "<build|built>",
+        "<buy|bought>",
+        "<catch|caught>",
+        "<choose|chose>",
+        "<come|came>"
+      ]
+  },
+  {
+    "theme_id": 5, 
+    "content": 
+      [
+        "I <meet|will meet> lots of interesting people",
+        "You <earn|will earn> a lot of money",
+        "Everything <be|will be> perfect",
+        "We <travel|will travel> around the world",
+        "They <anticipate|will anticipate> your wishes"
+      ]
+  },
+  {
+    "theme_id": 6, 
+    "content": 
+      [
+        "I <not answer|will not answer> the question",
+        "You <not have|will not have> any problems",
+        "She <not read|will not read> the book",
+        "We <not send|will not send> the postcard",
+        "They <not drink|will not drink> beer",
+        "<you ask|will you ask> him?",
+        "<it rain|will it rain>?",
+        "What <they eat|will they eat>?",
+        "Where <we meet|will we meet>?",
+        "When <I be|will I be> famous?"
+      ]
+  }
+]
