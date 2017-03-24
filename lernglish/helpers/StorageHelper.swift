@@ -16,11 +16,6 @@ class StorageHelper {
     moc: NSManagedObjectContext,
     privateMoc: NSManagedObjectContext
     
-    func getSections() -> [SectionMO] {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: StorageEntity.section.rawValue)
-        return try! moc.fetch(request) as! [SectionMO]
-    }
-    
     func getLessonsFetchedResultsController() -> NSFetchedResultsController<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: StorageEntity.theme.rawValue)
         let sortSections = NSSortDescriptor(key: "section.id", ascending: true)
