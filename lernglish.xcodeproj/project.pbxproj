@@ -10,6 +10,7 @@
 		8A0308351E7B1EC300E50595 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0308341E7B1EC300E50595 /* Extensions.swift */; };
 		8A0308371E7B538100E50595 /* LessonHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0308361E7B538100E50595 /* LessonHeaderCell.swift */; };
 		8A0308391E7B58DB00E50595 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0308381E7B58DB00E50595 /* Constants.swift */; };
+		8A16E35E1E84A0C800ACE9B1 /* PracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A16E35D1E84A0C800ACE9B1 /* PracticeController.swift */; };
 		8A3583AB1E7983560084B569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3583AA1E7983560084B569 /* AppDelegate.swift */; };
 		8A3583B21E7983560084B569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3583B11E7983560084B569 /* Assets.xcassets */; };
 		8A3583B51E7983560084B569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3583B31E7983560084B569 /* LaunchScreen.storyboard */; };
@@ -31,6 +32,7 @@
 		8A0308341E7B1EC300E50595 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = helpers/Extensions.swift; sourceTree = "<group>"; };
 		8A0308361E7B538100E50595 /* LessonHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonHeaderCell.swift; path = views/LessonHeaderCell.swift; sourceTree = "<group>"; };
 		8A0308381E7B58DB00E50595 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = helpers/Constants.swift; sourceTree = "<group>"; };
+		8A16E35D1E84A0C800ACE9B1 /* PracticeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PracticeController.swift; path = controllers/PracticeController.swift; sourceTree = "<group>"; };
 		8A3583A71E7983560084B569 /* lernglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lernglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A3583AA1E7983560084B569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A3583B11E7983560084B569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */,
 				8A4009EC1E7C0CC80072BA90 /* LessonController.swift */,
 				8AE24FDE1E79D63000FEBB55 /* TestsController.swift */,
+				8A16E35D1E84A0C800ACE9B1 /* PracticeController.swift */,
 				8AE24FE01E79D64800FEBB55 /* ResultsController.swift */,
 			);
 			name = controllers;
@@ -252,6 +255,7 @@
 				8AE24FDB1E79D2AB00FEBB55 /* RootTabController.swift in Sources */,
 				8A4009ED1E7C0CC80072BA90 /* LessonController.swift in Sources */,
 				8AE24FDF1E79D63000FEBB55 /* TestsController.swift in Sources */,
+				8A16E35E1E84A0C800ACE9B1 /* PracticeController.swift in Sources */,
 				8AA0CF8C1E7E22D6004E8117 /* Entities.swift in Sources */,
 				8A0308371E7B538100E50595 /* LessonHeaderCell.swift in Sources */,
 				8A0308351E7B1EC300E50595 /* Extensions.swift in Sources */,
