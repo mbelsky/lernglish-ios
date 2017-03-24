@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let lessons = LessonsListController()
         lessons.tabBarItem = UITabBarItem(title: "Lessons", image: nil, selectedImage: nil)
-        let tests = TestsController()
+        let tests = StartPracticeController()
         tests.tabBarItem = UITabBarItem(title: "Tests", image: nil, selectedImage: nil)
         let results = ResultsController()
         results.tabBarItem = UITabBarItem(title: "Results", image: nil, selectedImage: nil)

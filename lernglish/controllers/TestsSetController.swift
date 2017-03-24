@@ -1,5 +1,5 @@
 //
-//  PracticeController.swift
+//  TestsSetController.swift
 //  lernglish
 //
 //  Created by Maxim Belsky on 24/03/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PracticeController: UIViewController {
+class TestsSetController: UIPageViewController {
 
     var tests: [TestMO]?
 
