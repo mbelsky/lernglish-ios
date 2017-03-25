@@ -19,6 +19,7 @@
 		8A8938E21E7DC095000B41E7 /* base-sections.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A8938E11E7DC095000B41E7 /* base-sections.json */; };
 		8A9CAFB01E7F56D100FC4BBF /* base-tests.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAFAF1E7F56D100FC4BBF /* base-tests.json */; };
 		8AA0CF8C1E7E22D6004E8117 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA0CF8A1E7E22D6004E8117 /* Entities.swift */; };
+		8AC27DC31E863C810055AA85 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC27DC21E863C810055AA85 /* TestController.swift */; };
 		8AE24FDB1E79D2AB00FEBB55 /* RootTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDA1E79D2AB00FEBB55 /* RootTabController.swift */; };
 		8AE24FDD1E79D61600FEBB55 /* LessonsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */; };
 		8AE24FDF1E79D63000FEBB55 /* StartPracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDE1E79D63000FEBB55 /* StartPracticeController.swift */; };
@@ -43,6 +44,7 @@
 		8A8938E11E7DC095000B41E7 /* base-sections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "base-sections.json"; sourceTree = "<group>"; };
 		8A9CAFAF1E7F56D100FC4BBF /* base-tests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "base-tests.json"; sourceTree = "<group>"; };
 		8AA0CF8A1E7E22D6004E8117 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entities.swift; path = models/Entities.swift; sourceTree = "<group>"; };
+		8AC27DC21E863C810055AA85 /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestController.swift; path = controllers/TestController.swift; sourceTree = "<group>"; };
 		8AE24FDA1E79D2AB00FEBB55 /* RootTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabController.swift; path = controllers/RootTabController.swift; sourceTree = "<group>"; };
 		8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonsListController.swift; path = controllers/LessonsListController.swift; sourceTree = "<group>"; };
 		8AE24FDE1E79D63000FEBB55 /* StartPracticeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartPracticeController.swift; path = controllers/StartPracticeController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				8AE24FDC1E79D61600FEBB55 /* LessonsListController.swift */,
 				8A4009EC1E7C0CC80072BA90 /* LessonController.swift */,
 				8AE24FDE1E79D63000FEBB55 /* StartPracticeController.swift */,
+				8AC27DC21E863C810055AA85 /* TestController.swift */,
 				8A16E35D1E84A0C800ACE9B1 /* TestsSetController.swift */,
 				8AE24FE01E79D64800FEBB55 /* ResultsController.swift */,
 			);
@@ -247,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AC27DC31E863C810055AA85 /* TestController.swift in Sources */,
 				8AE24FDD1E79D61600FEBB55 /* LessonsListController.swift in Sources */,
 				8AE24FE31E79E4AC00FEBB55 /* LessonCell.swift in Sources */,
 				8AE24FE11E79D64800FEBB55 /* ResultsController.swift in Sources */,
