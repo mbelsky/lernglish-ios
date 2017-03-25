@@ -9,16 +9,21 @@
 import UIKit
 
 struct K {
-   
+
     struct Color {
         static let primary = UIColor(html: 0x22B13B)!
         static let primaryDark = UIColor(html: 0x1E9F35)!
         
         static let lightGray = UIColor(html: 0xEEEEEE)!
+        static let gray = UIColor.gray
     }
     
     struct Font {
         static let tableHeader = UIFont.systemFont(ofSize: 12.5, weight: 0.25)
         static let tableRow = UIFont.systemFont(ofSize: 16.5, weight: 0)
+    }
+
+    struct Test {
+        static let pattern = "(.*)<([^\\|]*)\\|?([^\\|]*)>(.*)"
     }
 }
