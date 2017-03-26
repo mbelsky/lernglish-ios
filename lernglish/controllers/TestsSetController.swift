@@ -24,6 +24,8 @@ class TestsSetController: UIViewController {
         return view
     }()
 
+    fileprivate var correctAnswersCount = 0
+
     private var currentPage = -1 {
         didSet {
             displayPage(currentPage)
@@ -38,8 +40,6 @@ class TestsSetController: UIViewController {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self,
                                                            action: #selector(closeController))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self,
-                                                            action: #selector(showNext))
 
         view.backgroundColor = .white
         view.addSubview(scrollView)
@@ -66,7 +66,7 @@ class TestsSetController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    func showNext() {
+    fileprivate func showNext() {
         currentPage += 1
     }
 
@@ -95,6 +95,7 @@ class TestsSetController: UIViewController {
             controller = testControllers[page]
         } else {
             controller = TestController()
+            controller.delegate = self
             controller.testMo = tests[page]
             testControllers.insert(controller, at: page)
         }
@@ -109,5 +110,12 @@ class TestsSetController: UIViewController {
             scrollView.addSubview(controller.view)
             controller.didMove(toParentViewController: self)
         }
+    }
+}
+
+extension TestsSetController: TestControllerDelegate {
+    func testController(_ controller: TestController, didGetAnswer isCorrect: Bool) {
+        correctAnswersCount += isCorrect ? 1 : 0
+        showNext()
     }
 }
