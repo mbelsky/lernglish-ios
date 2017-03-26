@@ -12,7 +12,7 @@ class TestsSetController: UIViewController {
 
     var tests: [TestMO]!
 
-    private var testControllers = [TestController]()
+    private var subcontrollers = [UIViewController]()
 
     private var scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -32,7 +32,7 @@ class TestsSetController: UIViewController {
         }
     }
     private var pagesCount: Int {
-        return tests.count + 1
+        return tests.count
     }
 
 
@@ -51,7 +51,7 @@ class TestsSetController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if 0 == testControllers.count {
+        if 0 == subcontrollers.count {
             scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pagesCount), height: view.frame.height)
             currentPage = 0
         }
@@ -71,7 +71,6 @@ class TestsSetController: UIViewController {
     }
 
     private func displayPage(_ page: Int) {
-        loadPage(page - 1)
         loadPage(page)
         loadPage(page + 1)
 
@@ -81,23 +80,31 @@ class TestsSetController: UIViewController {
         bounds.origin.y = 0
         scrollView.scrollRectToVisible(bounds, animated: true)
 
-        navigationItem.title = pagesCount - 1 > page ? "\(page + 1) of \(pagesCount - 1)" : "Results"
+        navigationItem.title = pagesCount > page ? "\(page + 1) of \(pagesCount)" : "Results"
     }
 
     private func loadPage(_ page: Int) {
-        guard -1 < page && page < pagesCount - 1 else {
+        guard -1 < page && page <= pagesCount else {
             // something went wrong
             return
         }
 
-        let controller: TestController
-        if testControllers.count > page {
-            controller = testControllers[page]
+        let controller: UIViewController
+        if subcontrollers.count > page {
+            controller = subcontrollers[page]
+            (controller as? TestsResultController)?.correctAnswersCount = correctAnswersCount
         } else {
-            controller = TestController()
-            controller.delegate = self
-            controller.testMo = tests[page]
-            testControllers.insert(controller, at: page)
+            if pagesCount == page {
+                let resultController = TestsResultController()
+                controller = resultController
+            } else {
+                let testController = TestController()
+                testController.delegate = self
+                testController.testMo = tests[page]
+                subcontrollers.insert(testController, at: page)
+
+                controller = testController
+            }
         }
 
         if nil == controller.view.superview {
