@@ -52,7 +52,7 @@ class TestsSetController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if 0 == subcontrollers.count {
-            scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pagesCount), height: view.frame.height)
+            scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pagesCount + 1), height: view.frame.height)
             currentPage = 0
         }
     }
@@ -96,15 +96,17 @@ class TestsSetController: UIViewController {
         } else {
             if pagesCount == page {
                 let resultController = TestsResultController()
+                resultController.totalTestsCount = tests.count
                 controller = resultController
             } else {
                 let testController = TestController()
                 testController.delegate = self
                 testController.testMo = tests[page]
-                subcontrollers.insert(testController, at: page)
 
                 controller = testController
             }
+
+            subcontrollers.insert(controller, at: page)
         }
 
         if nil == controller.view.superview {
