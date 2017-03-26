@@ -59,7 +59,15 @@ class StartPracticeController: UIViewController {
 
         let controller = TestsSetController()
         let shuffledTests = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: tests)
-        controller.tests = shuffledTests.prefix(upTo: 5).map { $0 as! TestMO }
+
+        let count: Int
+        #if DEBUG
+            count = 3
+        #else
+            count = 5
+        #endif
+        controller.tests = shuffledTests.prefix(upTo: count).map { $0 as! TestMO }
+
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
     }
 }
