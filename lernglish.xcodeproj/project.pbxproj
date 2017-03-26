@@ -14,6 +14,7 @@
 		8A3583AB1E7983560084B569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3583AA1E7983560084B569 /* AppDelegate.swift */; };
 		8A3583B21E7983560084B569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3583B11E7983560084B569 /* Assets.xcassets */; };
 		8A3583B51E7983560084B569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3583B31E7983560084B569 /* LaunchScreen.storyboard */; };
+		8A3D958C1E874B730096FC45 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D958B1E874B730096FC45 /* Log.swift */; };
 		8A4009ED1E7C0CC80072BA90 /* LessonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4009EC1E7C0CC80072BA90 /* LessonController.swift */; };
 		8A8938DE1E7DA0DB000B41E7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8938DD1E7DA0DB000B41E7 /* SwiftyJSON.framework */; };
 		8A8938E21E7DC095000B41E7 /* base-sections.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A8938E11E7DC095000B41E7 /* base-sections.json */; };
@@ -39,6 +40,7 @@
 		8A3583B11E7983560084B569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3583B41E7983560084B569 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A3583B61E7983560084B569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A3D958B1E874B730096FC45 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Log.swift; path = helpers/Log.swift; sourceTree = "<group>"; };
 		8A4009EC1E7C0CC80072BA90 /* LessonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonController.swift; path = controllers/LessonController.swift; sourceTree = "<group>"; };
 		8A8938DD1E7DA0DB000B41E7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		8A8938E11E7DC095000B41E7 /* base-sections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "base-sections.json"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				8A0308341E7B1EC300E50595 /* Extensions.swift */,
 				8A0308381E7B58DB00E50595 /* Constants.swift */,
 				8AF5F53E1E7C6337002C58D9 /* StorageHelper.swift */,
+				8A3D958B1E874B730096FC45 /* Log.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				8AE24FE11E79D64800FEBB55 /* ResultsController.swift in Sources */,
 				8AF5F51C1E7C27F5002C58D9 /* DataModel.xcdatamodeld in Sources */,
 				8A3583AB1E7983560084B569 /* AppDelegate.swift in Sources */,
+				8A3D958C1E874B730096FC45 /* Log.swift in Sources */,
 				8AE24FDB1E79D2AB00FEBB55 /* RootTabController.swift in Sources */,
 				8A4009ED1E7C0CC80072BA90 /* LessonController.swift in Sources */,
 				8AE24FDF1E79D63000FEBB55 /* StartPracticeController.swift in Sources */,
