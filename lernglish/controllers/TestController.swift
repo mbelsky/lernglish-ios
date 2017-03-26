@@ -10,6 +10,7 @@ import UIKit
 
 class TestController: UIViewController {
 
+    weak var delegate: TestControllerDelegate?
     var testMo: TestMO? {
         didSet {
             guard let testMo = testMo,
@@ -30,9 +31,7 @@ class TestController: UIViewController {
                 return
             }
 
-            #if DEBUG
-                print(nsContent.substring(with: match.rangeAt(0)))
-            #endif
+            Log.d(nsContent.substring(with: match.rangeAt(0)))
 
             if match.numberOfRanges > 3 {
                 firstPart = nsContent.substring(with: match.rangeAt(1))
@@ -88,6 +87,13 @@ class TestController: UIViewController {
     private let tfAnswer: UITextField = {
         let view = UITextField()
         view.borderStyle = .roundedRect
+
+        view.autocapitalizationType = .none
+        view.autocorrectionType = .no
+        view.keyboardType = .asciiCapable
+        view.returnKeyType = .done
+        view.spellCheckingType = .no
+
         view.textAlignment = .center
         view.textColor = K.Color.primaryDark
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -110,7 +116,47 @@ class TestController: UIViewController {
         lblFirstPart.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 80).isActive = true
         tfAnswer.topAnchor.constraint(equalTo: lblFirstPart.bottomAnchor, constant: topConstant).isActive = true
         lblSecondPart.topAnchor.constraint(equalTo: tfAnswer.bottomAnchor, constant: topConstant).isActive = true
+
+        tfAnswer.delegate = self
     }
+
+    fileprivate func analyzeAnswer(in textField: UITextField) {
+        guard let answer = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(),
+                !answer.isEmpty else {
+            return
+        }
+
+        let replacePairs = [
+            ("don't", "do not"),
+            ("doesn't", "does not"),
+            ("'ll", " will"),
+            ("won't", "will not")
+        ]
+        let expandedAnswer = replacePairs.reduce(answer) { string, pair in
+            string.replacingOccurrences(of: pair.0, with: pair.1)
+        }
+
+        let isAnswerCorrect = expandedAnswer == test.answer
+        Log.d("Answers: original='\(test.answer)' received='\(answer)' expanded='\(expandedAnswer)' isCorrect=\(isAnswerCorrect)")
+
+        DispatchQueue.main.async {
+            self.delegate?.testController(self, didGetAnswer: isAnswerCorrect)
+        }
+        DispatchQueue.main.async {
+            textField.resignFirstResponder()
+        }
+    }
+}
+
+extension TestController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        analyzeAnswer(in: textField)
+        return true
+    }
+}
+
+protocol TestControllerDelegate: class {
+    func testController(_ controller: TestController, didGetAnswer isCorrect: Bool)
 }
 
 private struct Test {
@@ -126,7 +172,7 @@ private struct Test {
             let firstPart = firstPart?.trimmingCharacters(in: .whitespacesAndNewlines),
             let secondPart = secondPart?.trimmingCharacters(in: .whitespacesAndNewlines),
             let hint = hint?.trimmingCharacters(in: .whitespacesAndNewlines),
-            let answer = answer?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+            let answer = answer?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() else {
                 return nil
         }
 
