@@ -17,16 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        let lessons = LessonsListController()
-        lessons.tabBarItem = UITabBarItem(title: "Lessons", image: nil, selectedImage: nil)
-        let tests = StartPracticeController()
-        tests.tabBarItem = UITabBarItem(title: "Tests", image: nil, selectedImage: nil)
-        let results = ScoreController()
-        results.tabBarItem = UITabBarItem(title: "Results", image: nil, selectedImage: nil)
-
-        let controller = RootTabController()
-        controller.setViewControllers([lessons, tests, results], animated: true)
-        window?.rootViewController = controller
+        window?.rootViewController = buildRootController()
 
         UITabBar.appearance().barTintColor = K.Color.lightGray
         UITabBar.appearance().isTranslucent = false
@@ -45,5 +36,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         try? StorageHelper.instance.save()
+    }
+
+    private func buildRootController() -> UIViewController {
+        let lessons = LessonsListController()
+        lessons.tabBarItem = UITabBarItem(title: "Themes", image: #imageLiteral(resourceName: "ic_themes"), selectedImage: nil)
+        let tests = StartPracticeController()
+        tests.tabBarItem = UITabBarItem(title: "Practice", image: #imageLiteral(resourceName: "ic_practice"), selectedImage: nil)
+        let results = ScoreController()
+        results.tabBarItem = UITabBarItem(title: "Score", image: #imageLiteral(resourceName: "ic_score"), selectedImage: nil)
+
+        let controller = RootTabController()
+        controller.setViewControllers([lessons, tests, results], animated: true)
+        return controller
     }
 }
