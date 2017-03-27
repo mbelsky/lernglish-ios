@@ -21,7 +21,23 @@ class StorageHelper {
         let sortSections = NSSortDescriptor(key: "section.id", ascending: true)
         let sortThemes = NSSortDescriptor(key: "id", ascending: true)
         request.sortDescriptors = [sortSections, sortThemes]
-        return NSFetchedResultsController<NSFetchRequestResult>(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "section.transientName", cacheName: nil)
+        return NSFetchedResultsController<NSFetchRequestResult>(fetchRequest: request, managedObjectContext: moc,
+                                                                sectionNameKeyPath: "section.transientName",
+                                                                cacheName: nil)
+    }
+
+    func frcGetAnsweredThemes() -> NSFetchedResultsController<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: StorageEntity.theme.rawValue)
+
+        request.predicate = NSPredicate(format: "score.total > 0")
+
+        let sortSections = NSSortDescriptor(key: "section.id", ascending: true)
+        let sortThemes = NSSortDescriptor(key: "id", ascending: true)
+        request.sortDescriptors = [sortSections, sortThemes]
+
+        return NSFetchedResultsController<NSFetchRequestResult>(fetchRequest: request, managedObjectContext: moc,
+                                                                sectionNameKeyPath: "section.transientName",
+                                                                cacheName: nil)
     }
 
     func getTests(_ testsHandler: @escaping ([TestMO]?) -> Void) {
@@ -78,11 +94,19 @@ class StorageHelper {
     }
 
     private func increaseScore(_ test: TestMO, isCorrect: Bool) {
-        guard let score = test.theme?.score else {
+        guard let theme = test.theme else {
             return
         }
-        score.total += 1
-        score.correct += isCorrect ? 1 : 0
+
+        var score = theme.score
+        if nil == score {
+            score = (NSEntityDescription.insertNewObject(forEntityName: StorageEntity.score.rawValue,
+                                                         into: privateMoc) as! ScoreMO)
+            score!.theme = theme
+        }
+
+        score!.total += 1
+        score!.correct += isCorrect ? 1 : 0
 
         guard privateMoc.hasChanges else {
             return
