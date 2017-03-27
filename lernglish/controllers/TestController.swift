@@ -137,6 +137,7 @@ class TestController: UIViewController {
         }
 
         let isAnswerCorrect = expandedAnswer == test.answer
+        StorageHelper.instance.increaseScore(for: testMo!, isCorrect: isAnswerCorrect)
         Log.d("Answers: original='\(test.answer)' received='\(answer)' expanded='\(expandedAnswer)' isCorrect=\(isAnswerCorrect)")
 
         DispatchQueue.main.async {
