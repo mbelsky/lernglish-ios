@@ -59,8 +59,11 @@ class TestController: UIViewController {
             tfAnswer.attributedPlaceholder = NSAttributedString(string: test.hint, attributes: placeholderAttrs)
 
             // Calc answer view bounds based on answer's text
-            let attrs = [NSFontAttributeName: tfAnswer.font]
             let size = CGSize(width: view.frame.width, height: CGFloat.greatestFiniteMagnitude)
+            var attrs = [String: Any]()
+            if let font = tfAnswer.font {
+                attrs[NSFontAttributeName] = font
+            }
             var bounds = NSString(string: test.answer).boundingRect(with: size, attributes: attrs, context: nil)
             bounds.size.width += 42
             bounds.size.height += 16
