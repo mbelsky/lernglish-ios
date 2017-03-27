@@ -12,16 +12,28 @@ import UIKit
 class LessonController: UIViewController {
     weak var theme: ThemeMO?
 
-    fileprivate var textView: UITextView!
+    fileprivate var textView = UITextView(frame: .zero)
+    private let aiSpinner: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.activityIndicatorViewStyle = .whiteLarge
+        view.color = K.Color.primaryDark
+        view.hidesWhenStopped = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func loadView() {
-        textView = UITextView(frame: .zero)
         view = textView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+
+        view.addSubview(aiSpinner)
+        aiSpinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        aiSpinner.bottomAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        aiSpinner.startAnimating()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self,
                                                            action: #selector(closeController))
@@ -56,7 +68,14 @@ class LessonController: UIViewController {
             }
 
             DispatchQueue.main.async {
+                self.aiSpinner.stopAnimating()
+
                 if let text = text {
+                    let transition = CATransition()
+                    transition.duration = 0.7
+                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    transition.type = kCATransitionFade
+                    self.textView.layer.add(transition, forKey: kCATransitionFade)
                     self.textView.attributedText = text
                 } else {
                     self.showErrorAlert()
