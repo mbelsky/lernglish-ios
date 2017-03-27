@@ -50,11 +50,10 @@ extension ScoreController: UICollectionViewDelegateFlowLayout {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let theme = frc.object(at: indexPath) as! ThemeMO
-        let score = theme.score!
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ScoreCell
 
         cell.lblTheme.text = theme.name
-        cell.lblValue.text = "90%"
+        cell.lblValue.text = "\(Int(theme.score!.ratio))%"
         return cell
     }
 
