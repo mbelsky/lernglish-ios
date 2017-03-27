@@ -41,6 +41,12 @@ class StorageHelper {
 
     }
 
+    func increaseScore(for test: TestMO, isCorrect: Bool) {
+        privateMoc.perform {
+            self.increaseScore(test, isCorrect: isCorrect)
+        }
+    }
+
     func save() throws {
         if moc.hasChanges {
             try moc.save()
@@ -71,8 +77,21 @@ class StorageHelper {
         }
     }
 
-    deinit {
-        print("It's time to DIE")
+    private func increaseScore(_ test: TestMO, isCorrect: Bool) {
+        guard let score = test.theme?.score else {
+            return
+        }
+        score.total += 1
+        score.correct += isCorrect ? 1 : 0
+
+        guard privateMoc.hasChanges else {
+            return
+        }
+
+        try! privateMoc.save()
+        moc.performAndWait {
+            try! self.save()
+        }
     }
 }
 
