@@ -27,6 +27,7 @@
 		8AE24FDF1E79D63000FEBB55 /* StartPracticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FDE1E79D63000FEBB55 /* StartPracticeController.swift */; };
 		8AE24FE11E79D64800FEBB55 /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FE01E79D64800FEBB55 /* ScoreController.swift */; };
 		8AE24FE31E79E4AC00FEBB55 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE24FE21E79E4AC00FEBB55 /* LessonCell.swift */; };
+		8AEDEC321E8906E0006E08FC /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDEC311E8906E0006E08FC /* ScoreCell.swift */; };
 		8AF5F51C1E7C27F5002C58D9 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8AF5F51A1E7C27F5002C58D9 /* DataModel.xcdatamodeld */; };
 		8AF5F53F1E7C6337002C58D9 /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF5F53E1E7C6337002C58D9 /* StorageHelper.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 		8AE24FDE1E79D63000FEBB55 /* StartPracticeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartPracticeController.swift; path = controllers/StartPracticeController.swift; sourceTree = "<group>"; };
 		8AE24FE01E79D64800FEBB55 /* ScoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreController.swift; path = controllers/ScoreController.swift; sourceTree = "<group>"; };
 		8AE24FE21E79E4AC00FEBB55 /* LessonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LessonCell.swift; path = views/LessonCell.swift; sourceTree = "<group>"; };
+		8AEDEC311E8906E0006E08FC /* ScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCell.swift; sourceTree = "<group>"; };
 		8AF5F51B1E7C27F5002C58D9 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		8AF5F53E1E7C6337002C58D9 /* StorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageHelper.swift; path = helpers/StorageHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 		8AE24FD71E79D23C00FEBB55 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				8AEDEC311E8906E0006E08FC /* ScoreCell.swift */,
 				8AE24FE21E79E4AC00FEBB55 /* LessonCell.swift */,
 				8A0308361E7B538100E50595 /* LessonHeaderCell.swift */,
 			);
@@ -280,6 +283,7 @@
 				8A3D958E1E8784DD0096FC45 /* TestsResultController.swift in Sources */,
 				8A0308351E7B1EC300E50595 /* Extensions.swift in Sources */,
 				8A0308391E7B58DB00E50595 /* Constants.swift in Sources */,
+				8AEDEC321E8906E0006E08FC /* ScoreCell.swift in Sources */,
 				8AF5F53F1E7C6337002C58D9 /* StorageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
