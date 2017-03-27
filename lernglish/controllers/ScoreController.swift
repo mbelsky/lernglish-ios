@@ -18,6 +18,27 @@ class ScoreController: UICollectionViewController {
         StorageHelper.instance.frcGetAnsweredThemes()
     }()
 
+    private let lblEmpty: UILabel = {
+        let lbl = UILabel()
+        lbl.isHidden = true
+        lbl.numberOfLines = 0
+        lbl.textAlignment = .center
+        lbl.textColor = K.Color.primaryDark
+        lbl.font = K.Font.title
+        lbl.text = "You have not practised yet"
+        return lbl
+    }()
+    private let lblAction: UILabel = {
+        let lbl = UILabel()
+        lbl.isHidden = true
+        lbl.numberOfLines = 0
+        lbl.textAlignment = .center
+        lbl.textColor = K.Color.primaryDark
+        lbl.font = K.Font.default
+        lbl.text = "Take a few tests and come back to see your results"
+        return lbl
+    }()
+
     init(_ layout: UICollectionViewLayout = UICollectionViewFlowLayout()) {
         super.init(collectionViewLayout: layout)
     }
@@ -28,6 +49,13 @@ class ScoreController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        for subview in [lblEmpty, lblAction] {
+            view.addSubview(subview)
+            view.addConstraintsWithFormat("H:|-16-[v0]-16-|", views: subview)
+        }
+        lblEmpty.bottomAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        lblAction.topAnchor.constraint(equalTo: lblEmpty.bottomAnchor, constant: 4).isActive = true
+
         collectionView?.backgroundColor = .white
         collectionView?.register(ScoreCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(LessonHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
@@ -35,6 +63,22 @@ class ScoreController: UICollectionViewController {
 
         frc.delegate = self
         try! frc.performFetch()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setLblEmptyVisibility()
+    }
+
+    fileprivate func setLblEmptyVisibility() {
+        let hidden: Bool
+        if let objects = frc.fetchedObjects, objects.count > 0 {
+            hidden = true
+        } else {
+            hidden = false
+        }
+
+        let _ = [lblEmpty, lblAction].map { $0.isHidden = hidden }
     }
 }
 
@@ -82,6 +126,7 @@ extension ScoreController: UICollectionViewDelegateFlowLayout {
 // MARK: - NSFetchedResultsControllerDelegate
 extension ScoreController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        setLblEmptyVisibility()
         collectionView?.reloadData()
     }
 }
