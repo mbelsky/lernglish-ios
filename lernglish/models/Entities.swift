@@ -8,6 +8,20 @@
 
 import CoreData
 
+@objc(ScoreMO)
+public class ScoreMO: NSManagedObject {
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ScoreMO> {
+        return NSFetchRequest<ScoreMO>(entityName: "Score");
+    }
+
+    @NSManaged public var correct: Int32
+    @NSManaged public var total: Int32
+    public var ratio: Float {
+        return ceilf(Float(correct) / Float(total) * 100)
+    }
+    @NSManaged public var theme: ThemeMO?
+}
+
 @objc(SectionMO)
 public class SectionMO: NSManagedObject {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<SectionMO> {

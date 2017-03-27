@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Score" representedClassName="ScoreMO" syncable="YES" codeGenerationType="class">
+    <entity name="Score" representedClassName="ScoreMO" syncable="YES">
         <attribute name="correct" attributeType="Integer 32" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ratio" transient="YES" attributeType="Float" minValueString="0" maxValueString="100" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="total" attributeType="Integer 32" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="theme" maxCount="1" deletionRule="Nullify" destinationEntity="Theme" inverseName="score" inverseEntity="Theme" syncable="YES"/>
     </entity>
@@ -25,9 +26,9 @@
         <relationship name="tests" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Test" inverseName="theme" inverseEntity="Test" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Score" positionX="-135" positionY="27" width="128" height="105"/>
         <element name="Section" positionX="-236" positionY="-36" width="128" height="105"/>
         <element name="Test" positionX="-135" positionY="27" width="128" height="75"/>
         <element name="Theme" positionX="-29" positionY="-9" width="128" height="150"/>
-        <element name="Score" positionX="-135" positionY="27" width="128" height="90"/>
     </elements>
 </model>
