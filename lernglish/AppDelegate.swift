@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         lessons.tabBarItem = UITabBarItem(title: "Lessons", image: nil, selectedImage: nil)
         let tests = StartPracticeController()
         tests.tabBarItem = UITabBarItem(title: "Tests", image: nil, selectedImage: nil)
-        let results = ResultsController()
+        let results = ScoreController()
         results.tabBarItem = UITabBarItem(title: "Results", image: nil, selectedImage: nil)
 
         let controller = RootTabController()
