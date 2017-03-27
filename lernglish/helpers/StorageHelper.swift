@@ -260,7 +260,7 @@ enum StorageError: Error {
 }
 
 private enum StorageEntity: String {
-    case section = "Section", theme = "Theme", test = "Test"
+    case score = "Score", section = "Section", theme = "Theme", test = "Test"
 }
 
 private struct Theme: CustomDebugStringConvertible {
