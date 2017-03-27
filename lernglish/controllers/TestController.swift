@@ -130,6 +130,7 @@ class TestController: UIViewController {
         }
 
         let replacePairs = [
+            ("didn't", "did not"),
             ("don't", "do not"),
             ("doesn't", "does not"),
             ("'ll", " will"),
