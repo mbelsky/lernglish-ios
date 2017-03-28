@@ -11,7 +11,7 @@ import UIKit
 
 class StartPracticeController: UIViewController {
     private let btnStart: UIButton = {
-        let btn = UIButton()
+        let btn = GreenButton()
         btn.backgroundColor = K.Color.primary
         btn.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         btn.isHidden = true
@@ -98,5 +98,13 @@ class StartPracticeController: UIViewController {
         controller.tests = shuffledTests.prefix(upTo: count).map { $0 as! TestMO }
 
         present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+    }
+}
+
+private class GreenButton: UIButton {
+    override open var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? K.Color.primaryDark : K.Color.primary
+        }
     }
 }
