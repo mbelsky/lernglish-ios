@@ -19,13 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window?.rootViewController = buildRootController()
 
-        UITabBar.appearance().barTintColor = K.Color.lightGray
-        UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().tintColor = K.Color.primaryDark
+        let viewStatusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width,
+                                                 height: application.statusBarFrame.height))
+        viewStatusBar.backgroundColor = K.Color.primaryDark
+        window?.rootViewController?.view.addSubview(viewStatusBar)
 
-        UINavigationBar.appearance().barTintColor = K.Color.lightGray
-        UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().tintColor = K.Color.primaryDark
+        setAppAppearance()
 
         StorageHelper.instance.importBaseSections()
         StorageHelper.instance.importBaseTests()
@@ -49,5 +48,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let controller = RootTabController()
         controller.setViewControllers([lessons, tests, results], animated: true)
         return controller
+    }
+
+    private func setAppAppearance() {
+        UITabBar.appearance().barTintColor = K.Color.lightGray
+        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().tintColor = K.Color.primaryDark
+
+        UINavigationBar.appearance().barTintColor = K.Color.primaryDark
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
 }
