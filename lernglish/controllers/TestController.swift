@@ -52,6 +52,9 @@ class TestController: UIViewController {
     }
     private var test: Test! {
         didSet {
+            if let section = testMo?.theme?.section {
+                lblDescription.text = "Use \(section.name!):"
+            }
             lblFirstPart.text = test.firstPart
             lblSecondPart.text = test.secondPart
 
@@ -77,13 +80,21 @@ class TestController: UIViewController {
         }
     }
 
+    private let lblDescription: UILabel = {
+        let lbl = UILabel()
+        lbl.font = K.Font.default
+        lbl.numberOfLines = 0
+        return lbl
+    }()
     private let lblFirstPart: UILabel = {
         let lbl = UILabel()
+        lbl.numberOfLines = 0
         lbl.textAlignment = .center
         return lbl
     }()
     private let lblSecondPart: UILabel = {
         let lbl = UILabel()
+        lbl.numberOfLines = 0
         lbl.textAlignment = .center
         return lbl
     }()
@@ -107,7 +118,7 @@ class TestController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
 
-        for subview in [lblFirstPart, lblSecondPart] {
+        for subview in [lblDescription, lblFirstPart, lblSecondPart] {
             view.addSubview(subview)
             view.addConstraintsWithFormat("H:|-16-[v0]-16-|", views: subview)
         }
@@ -116,7 +127,8 @@ class TestController: UIViewController {
         tfAnswer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
         let topConstant: CGFloat = 4
-        lblFirstPart.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 80).isActive = true
+        lblDescription.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 16).isActive = true
+        lblFirstPart.topAnchor.constraint(equalTo: lblDescription.bottomAnchor, constant: 50).isActive = true
         tfAnswer.topAnchor.constraint(equalTo: lblFirstPart.bottomAnchor, constant: topConstant).isActive = true
         lblSecondPart.topAnchor.constraint(equalTo: tfAnswer.bottomAnchor, constant: topConstant).isActive = true
 
