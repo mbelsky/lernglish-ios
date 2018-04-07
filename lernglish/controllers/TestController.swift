@@ -31,15 +31,15 @@ class TestController: UIViewController {
                 return
             }
 
-            Log.d(nsContent.substring(with: match.rangeAt(0)))
+            Log.d(nsContent.substring(with: match.range(at: 0)))
 
             if match.numberOfRanges > 3 {
-                firstPart = nsContent.substring(with: match.rangeAt(1))
-                secondPart = nsContent.substring(with: match.rangeAt(match.numberOfRanges - 1))
-                answer = nsContent.substring(with: match.rangeAt(match.numberOfRanges - 2))
+                firstPart = nsContent.substring(with: match.range(at: 1))
+                secondPart = nsContent.substring(with: match.range(at: match.numberOfRanges - 1))
+                answer = nsContent.substring(with: match.range(at: match.numberOfRanges - 2))
 
                 if match.numberOfRanges > 4 {
-                    hint = nsContent.substring(with: match.rangeAt(2))
+                    hint = nsContent.substring(with: match.range(at: 2))
                 } else {
                     hint = answer
                 }
@@ -58,14 +58,14 @@ class TestController: UIViewController {
             lblFirstPart.text = test.firstPart
             lblSecondPart.text = test.secondPart
 
-            let placeholderAttrs = [NSForegroundColorAttributeName: K.Color.gray]
+            let placeholderAttrs = [NSAttributedStringKey.foregroundColor: K.Color.gray]
             tfAnswer.attributedPlaceholder = NSAttributedString(string: test.hint, attributes: placeholderAttrs)
 
             // Calc answer view bounds based on answer's text
             let size = CGSize(width: view.frame.width, height: CGFloat.greatestFiniteMagnitude)
-            var attrs = [String: Any]()
+            var attrs = [NSAttributedStringKey: Any]()
             if let font = tfAnswer.font {
-                attrs[NSFontAttributeName] = font
+                attrs[NSAttributedStringKey.font] = font
             }
             var bounds = NSString(string: test.answer).boundingRect(with: size, attributes: attrs, context: nil)
             bounds.size.width += 42

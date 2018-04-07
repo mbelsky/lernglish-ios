@@ -44,7 +44,7 @@ class LessonController: UIViewController {
         displayContent()
     }
     
-    func closeController() {
+    @objc func closeController() {
         dismiss(animated: true) {
             if let theme = self.theme {
                 let value = UIDevice.current.isSimulator ? !theme.isStudied : true
@@ -61,7 +61,7 @@ class LessonController: UIViewController {
             let html = self.wrapContent(self.theme?.content)
             if let data = html?.data(using: .unicode, allowLossyConversion: true) {
                 text = try? NSAttributedString(data: data,
-                                               options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                               options: [.documentType: NSAttributedString.DocumentType.html],
                                                documentAttributes: nil)
             } else {
                 text = nil

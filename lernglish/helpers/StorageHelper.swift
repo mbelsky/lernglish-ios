@@ -148,10 +148,9 @@ extension StorageHelper {
     }
 
     private func importSections(_ url: URL) throws {
-        guard let data = try? Data(contentsOf: url) else {
+        guard let data = try? Data(contentsOf: url), let json = try? JSON(data: data) else {
             throw StorageError.corruptedData
         }
-        let json = JSON(data: data)
         for section in json.arrayValue {
             let id = section["id"].int32Value
             let name = section["name"].stringValue
@@ -241,10 +240,9 @@ extension StorageHelper {
     }
 
     private func importTests(_ url: URL) throws {
-        guard let data = try? Data(contentsOf: url) else {
+        guard let data = try? Data(contentsOf: url), let json = try? JSON(data: data) else {
             throw StorageError.corruptedData
         }
-        let json = JSON(data: data)
         for testJson in json.arrayValue {
             let id = testJson["theme_id"].int32Value
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: StorageEntity.theme.rawValue)

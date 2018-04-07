@@ -31,7 +31,7 @@ public class SectionMO: NSManagedObject {
     @NSManaged public var id: Int32
     @NSManaged public var name: String?
     @NSManaged public var themes: NSSet?
-    public var transientName: String? {
+    @objc public var transientName: String? {
         return name
     }
 

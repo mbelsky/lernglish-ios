@@ -19,11 +19,11 @@ struct K {
     }
     
     struct Font {
-        static let `default` = UIFont.systemFont(ofSize: 16.5, weight: 0)
-        static let emojiLarge = UIFont.systemFont(ofSize: 120, weight: 0)
-        static let tableHeader = UIFont.systemFont(ofSize: 12.5, weight: 0.25)
+        static let `default` = UIFont.systemFont(ofSize: 16.5, weight: UIFont.Weight(rawValue: 0))
+        static let emojiLarge = UIFont.systemFont(ofSize: 120, weight: UIFont.Weight(rawValue: 0))
+        static let tableHeader = UIFont.systemFont(ofSize: 12.5, weight: UIFont.Weight(rawValue: 0.25))
         static let tableRow = Font.default
-        static let title = UIFont.systemFont(ofSize: 17, weight: 0.5)
+        static let title = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight(rawValue: 0.4))
     }
 
     struct Test {

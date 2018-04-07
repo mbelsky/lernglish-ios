@@ -78,7 +78,7 @@ class StartPracticeController: UIViewController {
         }
     }
 
-    func startPractice() {
+    @objc func startPractice() {
         guard let tests = tests, tests.count > 0 else {
             let error = UIAlertController(title: nil, message: "No tests to practice", preferredStyle: .alert)
             error.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))

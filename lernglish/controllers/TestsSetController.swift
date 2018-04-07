@@ -62,7 +62,7 @@ class TestsSetController: UIViewController {
         try? StorageHelper.instance.save()
     }
 
-    func closeController() {
+    @objc func closeController() {
         dismiss(animated: true, completion: nil)
     }
 
