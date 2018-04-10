@@ -31,17 +31,18 @@ class TestController: UIViewController {
                 return
             }
 
-            Log.d(nsContent.substring(with: match.range(at: 0)))
+            for i in 0..<match.numberOfRanges {
+                Log.d("\(i) – " + nsContent.substring(with: match.range(at: i)))
+            }
 
             if match.numberOfRanges > 3 {
                 firstPart = nsContent.substring(with: match.range(at: 1))
+                hint = nsContent.substring(with: match.range(at: 2))
                 secondPart = nsContent.substring(with: match.range(at: match.numberOfRanges - 1))
-                answer = nsContent.substring(with: match.range(at: match.numberOfRanges - 2))
 
-                if match.numberOfRanges > 4 {
-                    hint = nsContent.substring(with: match.range(at: 2))
-                } else {
-                    hint = answer
+                answer = nsContent.substring(with: match.range(at: match.numberOfRanges - 2))
+                if answer?.isEmpty ?? true {
+                    answer = hint
                 }
             }
 
